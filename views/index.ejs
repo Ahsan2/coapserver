@@ -104,21 +104,21 @@
               $.ajax({
                   url: "/update",
               }).done(data => {
-                  if ($("#pir1Image").attr("src") !=  "/images/nomotion.svg" && data.pir1) {
+                  if ($("#pir1Image").attr("src") ==  "/images/nomotion.svg" && data.pir1) {
                     $("#pir1Image").attr("src", "/images/motion.svg");
                     $("#pir1Text").text("Motion Detected");
                   } else {
-                    if ($("#pir1Image").attr("src") !=  "/images/motion.svg" && !data.pir1) {
+                    if ($("#pir1Image").attr("src") ==  "/images/motion.svg" && !data.pir1) {
                       $("#pir1Image").attr("src", "/images/nomotion.svg");
                       $("#pir1Text").text("No Motion Detected");
                     }
                   }
 
-                  if ($("#pir2Image").attr("src") !=  "/images/nomotion.svg" && data.pir2) {
+                  if ($("#pir2Image").attr("src") ==  "/images/nomotion.svg" && data.pir2) {
                     $("#pir2Image").attr("src", "/images/motion.svg");
                     $("#pir2Text").text("Motion Detected");
                   } else {
-                    if ($("#pir2Image").attr("src") !=  "/images/motion.svg" && !data.pir2) {
+                    if ($("#pir2Image").attr("src") ==  "/images/motion.svg" && !data.pir2) {
                       $("#pir2Image").attr("src", "/images/nomotion.svg");
                       $("#pir2Text").text("No Motion Detected");
                     }
