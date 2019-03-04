@@ -61,7 +61,7 @@ server.on('request', function(req, res) {
   }
 
   // console.log(req.payload.toString('utf8'))
-  res.end('Hello ' + req.url.split('/')[1] + '\n')
+  res.end(`${req.url.split('/')[1]} state set to ${req.payload.toString('utf8')}`)
 })
  
 // the default CoAP port is 5683
