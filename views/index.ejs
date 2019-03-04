@@ -81,15 +81,15 @@
             </label>
         </div>
         <div class="d-flex" style="text-align: center">
-            <div class="mr-4">
-                <h4>PIR 1</h4>
+            <div style="width: 260px">
+                <h3>PIR 1</h3>
                 <img id="pir1Image" src="/images/nomotion.svg" width="200" height="200" alt="">
-                <span id="pir1Text">No Motion Detected</span>
+                <h4 id="pir1Text">No Motion Detected</h4>
             </div>
-            <div class="ml-4">
-                <h4>PIR 2</h4>
+            <div style="width: 260px">
+                <h3>PIR 2</h3>
                 <img id="pir2Image" src="/images/nomotion.svg" width="200" height="200" alt="">
-                <span id="pir2Text">No Motion Detected</span>
+                <h4 id="pir2Text">No Motion Detected</h4>
             </div>
         </div>
     </div>
@@ -104,21 +104,21 @@
               $.ajax({
                   url: "/update",
               }).done(data => {
-                  if ($("#pir1Image").attr("src") ==  "/images/nomotion.svg" && data.pir1) {
+                  if ($("#pir1Image").attr("src") !=  "/images/motion.svg" && data.pir1) {
                     $("#pir1Image").attr("src", "/images/motion.svg");
                     $("#pir1Text").text("Motion Detected");
                   } else {
-                    if ($("#pir1Image").attr("src") ==  "/images/motion.svg" && !data.pir1) {
+                    if ($("#pir1Image").attr("src") !=  "/images/nomotion.svg" && !data.pir1) {
                       $("#pir1Image").attr("src", "/images/nomotion.svg");
                       $("#pir1Text").text("No Motion Detected");
                     }
                   }
 
-                  if ($("#pir2Image").attr("src") ==  "/images/nomotion.svg" && data.pir2) {
+                  if ($("#pir2Image").attr("src") !=  "/images/motion.svg" && data.pir2) {
                     $("#pir2Image").attr("src", "/images/motion.svg");
                     $("#pir2Text").text("Motion Detected");
                   } else {
-                    if ($("#pir2Image").attr("src") ==  "/images/motion.svg" && !data.pir2) {
+                    if ($("#pir2Image").attr("src") !=  "/images/nomotion.svg" && !data.pir2) {
                       $("#pir2Image").attr("src", "/images/nomotion.svg");
                       $("#pir2Text").text("No Motion Detected");
                     }
