@@ -10,6 +10,12 @@
   "author": "Ahsan Masood Sabir",
   "license": "ISC",
   "dependencies": {
-    "coap": "^0.23.1"
+    "coap": "^0.23.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.15.3",
+    "express-messages": "^1.0.1"
   }
 }

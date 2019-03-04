@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+
+    <title>Document</title>
+
+    <style>
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+        }
+        
+        .switch input { 
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+        
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+        
+        input:checked + .slider {
+          background-color: #2196F3;
+        }
+        
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+        
+        .slider.round:before {
+          border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)" class="d-flex flex-column align-items-center">
+        <div class="d-flex">
+            <h4>Toggle Monitoring</h4>
+            <label class="switch mb-5 ml-2">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="d-flex" style="text-align: center">
+            <div class="mr-4">
+                <h3>PIR 1</h3>
+                <img id="pir1Image" src="/images/motion.svg" width="200" height="200" alt="">
+                <h4 id="pir1Text">Motion Detected</h4>
+            </div>
+            <div class="ml-4">
+                <h3>PIR 2</h3>
+                <img id="pir2Image" src="/images/nomotion.svg" width="200" height="200" alt="">
+                <h4 id="pir2Text">No Motion Detected</h4>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function() {
+          setInterval(function() {
+            if ($('input[type=checkbox]').attr('checked')) {
+              $.ajax({
+                  url: "/update",
+              }).done(data => {
+                  if ($("#pir1Image").attr("src") !=  "/images/nomotion.svg" && data.pir1) {
+                    $("#pir1Image").attr("src", "/images/motion.svg");
+                    $("#pir1Text").text("Motion Detected");
+                  } else {
+                    if ($("#pir1Image").attr("src") !=  "/images/motion.svg" && !data.pir1) {
+                      $("#pir1Image").attr("src", "/images/nomotion.svg");
+                      $("#pir1Text").text("No Motion Detected");
+                    }
+                  }
+
+                  if ($("#pir2Image").attr("src") !=  "/images/nomotion.svg" && data.pir2) {
+                    $("#pir2Image").attr("src", "/images/motion.svg");
+                    $("#pir2Text").text("Motion Detected");
+                  } else {
+                    if ($("#pir2Image").attr("src") !=  "/images/motion.svg" && !data.pir2) {
+                      $("#pir2Image").attr("src", "/images/nomotion.svg");
+                      $("#pir2Text").text("No Motion Detected");
+                    }
+                  }
+              });
+            } else {
+              if ($("#pir1Image").attr("src") !=  "/images/off.svg") {
+                $("#pir1Image").attr("src", "/images/off.svg");
+                $("#pir2Image").attr("src", "/images/off.svg");
+              }
+            }
+          }, 1000)
+        })
+    </script>
+</body>
+</html>
